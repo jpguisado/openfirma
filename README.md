@@ -3,7 +3,7 @@
 Firma Electrónica en la nube, sin complicaciones.
 
 El proyecto nace a partir de un proyecto de desarrollo académico
-y como tal, debe revisarse el código, en tanto que puede contener importantes fallas de seguridad.
+y como tal, debe revisarse, en tanto que puede contener importantes fallas de seguridad.
 
 ## ¿Que hace?
 
