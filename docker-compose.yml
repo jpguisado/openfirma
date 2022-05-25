@@ -6,9 +6,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=cuerpesito1234@@
-      - MYSQL_DATABASE=spring-rest
-      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=[PUT YOUR PASSWORD HERE]
+      - MYSQL_DATABASE=[PUT YOUR DB HERE]
+      - MYSQL_PASSWORD=[PUT YOUR NON ROOT PWD HERE]
     ports:
       - "3306:3306"
     expose:
@@ -29,7 +29,7 @@ services:
    environment:
      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/spring-rest
      SPRING_DATASOURCE_USERNAME: root
-     SPRING_DATASOURCE_PASSWORD: cuerpesito1234@@
+     SPRING_DATASOURCE_PASSWORD: [PUT YOUR PASSWORD HERE]
    volumes:
     - opendisco:/home/node/app
      
