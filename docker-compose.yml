@@ -1,0 +1,60 @@
+# Use root/example as user/password credentials
+version: '3.1'
+services:
+  mysql-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=cuerpesito1234@@
+      - MYSQL_DATABASE=spring-rest
+      - MYSQL_PASSWORD=mysql
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    volumes:
+      - /var/lib/docker/volumes/opendisco/_data
+    networks:
+      - openfirma-mysql
+
+  app:
+   image: jpguisado/openfirma
+   networks:
+      - openfirma-mysql
+   depends_on:
+      - mysql-db
+   ports:
+      - "8080:8080"
+   environment:
+     SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/spring-rest
+     SPRING_DATASOURCE_USERNAME: root
+     SPRING_DATASOURCE_PASSWORD: cuerpesito1234@@
+   volumes:
+    - opendisco:/home/node/app
+     
+  adminer:
+   image: adminer
+   restart: always
+   ports:
+    - "8282:8282"
+   command:
+   - 'php'
+   - '-S'
+   - '[::]:8282'
+   - '-t'
+   - '/var/www/html'
+   expose:
+    - 8080
+   links:
+    - mysql-db
+   networks:
+      - openfirma-mysql
+     
+networks:
+  openfirma-mysql:
+    external: true
+
+volumes:
+ opendisco:
+  external: true
